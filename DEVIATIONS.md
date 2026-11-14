@@ -115,3 +115,25 @@ Queried from the database, not estimated:
   unparsed/failed rate and does not affect the other models.
 - **No outcome existed** at 23:32:06Z (earliest possible 6-hour outcome is
   2026-11-15T04:23:25Z), so this change could not have been outcome-influenced.
+
+## Amendment anchor (on-chain)
+
+The amended `config.yaml` and this `DEVIATIONS.md` are committed on-chain in an
+**amendment** batch on Base Sepolia (chain 84532), giving the changes above a public
+timestamp earlier than any outcome:
+
+| Field | Value |
+|---|---|
+| Transaction | `0x2a8fa1d80b25db163a3fb7919b8f2551f7e2558ea0bbdf506d89de97532d3999` |
+| Block time | 2026-11-14T23:46:48Z (before the earliest possible 6-hour outcome, 2026-11-15T04:23:25Z) |
+| Merkle root | `284e38341eccfb665700b182b74c660ae3d48d20a2154bd9f0f935df142f8780` |
+| Leaf — `config.yaml` | `440f518fcaac8b18b0f3044a4f2adb274ae4b9e39771e38faae1cffb06a5b865` |
+| Leaf — `DEVIATIONS.md` | `facddd9cc1a0923fd9c202fa1da41f43a053a4477cdb2332308fc6ec662dead3` |
+| Explorer | https://sepolia.basescan.org/tx/0x2a8fa1d80b25db163a3fb7919b8f2551f7e2558ea0bbdf506d89de97532d3999 |
+
+The `DEVIATIONS.md` leaf is the SHA-256 of this file **as committed immediately before this
+section was added** (git commit `fe4c557bf9514fc137b9e9e1dc252e854929514a`); the
+`config.yaml` leaf is its current content. Both reproduce the transaction calldata
+(`RESOLVEBENCH\x01` followed by the Merkle root). The original pre-registration remains
+anchored in the prereg batch (tx `0xbf3a0edd…`); this amendment does not replace it — it
+timestamps the documented changes.
