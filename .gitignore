@@ -1,9 +1,11 @@
 .env
 data/
-results/
 .venv/
 __pycache__/
 *.pyc
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
 
-# internal handoff, not for public repo
+# internal handoff, not for the public repo
 CLAUDE.md

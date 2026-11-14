@@ -235,13 +235,20 @@ def cmd_export(args):
     out = os.path.join(args.dir, "results", "public")
     os.makedirs(out, exist_ok=True)
     for name, sql in (("tokens", "SELECT mint,symbol,name,source,t0,price0,liq0,snapshot,snapshot_sha,card,rugcheck_score FROM tokens"),
-                      ("responses", "SELECT id,mint,model,model_id,cond,messages,text,p_collapse_6h,p_halve_6h,p_collapse_24h,action,risk_on,created,leaf,batch FROM responses"),
+                      ("responses", "SELECT id,mint,model,model_id,cond,messages,prompt_sha,text,response_sha,p_collapse_6h,p_halve_6h,p_collapse_24h,action,risk_on,created,leaf,batch FROM responses"),
                       ("outcomes", "SELECT * FROM outcomes"), ("observations", "SELECT * FROM obs"),
                       ("batches", "SELECT * FROM batches"), ("screening", "SELECT * FROM seen")):
         with open(os.path.join(out, name + ".jsonl"), "w") as f:
             for r in db.q(sql):
-                f.write(json.dumps(dict(r), ensure_ascii=False) + "\n")
-    print("wrote", out, "(promotional texts are left out on purpose; see the dual-use note in PREREG.md)")
+                d = dict(r)
+                # Dual-use: never publish promoter text. Condition P's prompt embeds the
+                # project's own description, and a P reply may quote it. Blank the raw
+                # messages/text for P rows; keep prompt_sha, response_sha, leaf and the
+                # parsed numbers so every aggregate stays reproducible.
+                if name == "responses" and d.get("cond") == "P":
+                    d["messages"], d["text"] = "", ""
+                f.write(json.dumps(d, ensure_ascii=False) + "\n")
+    print("wrote", out, "(condition-P prompts/replies withheld; see the dual-use note in PREREG.md)")
 
 
 def main():
