@@ -1,0 +1,100 @@
+# ResolveBench configuration. No secrets in this file: keys live in .env.
+# This file is hashed and anchored with the pre-registration when `run` first starts,
+# so set it up fully BEFORE the first run and do not edit it afterwards.
+#
+# Every provider is listed. A model only runs if its key is present in .env, so anyone
+# re-running this can use whichever keys they have and leave the rest blank.
+
+run:
+  db: data/resolvebench.sqlite
+  collect_until: "2026-11-15T06:00:00Z"   # stop taking new tokens (Sun 07:00 Lagos). 24h outcomes are then all in by Mon 07:00 Lagos.
+  poll_seconds: 180          # look for new tokens every 3 minutes
+  track_seconds: 600         # price check every 10 minutes
+  commit_seconds: 1800       # anchor a Merkle root every 30 minutes
+  track_hours: 25.5
+  max_tokens_per_hour: 20    # sized for free-tier rate limits: about 2 calls a minute per model
+  max_tokens_total: 150
+  budget_usd: 4.5            # hard stop for paid model spend
+  concurrency: 6
+  dex_batch: 10
+  seed: 20261114
+
+sources:                     # where candidates come from; each token keeps its source for stratified reporting
+  - dexscreener_profiles     # tokens that just published a profile (being promoted to buyers)
+  - dexscreener_boosts       # tokens that just paid for a boost
+  - geckoterminal_new_pools  # all brand-new pools (most fail the liquidity filter)
+
+filters:                     # inclusion rule, applied once, the first time a token is seen
+  min_liquidity_usd: 10000
+  min_age_minutes: 5
+  max_age_hours: 24
+  min_txns_h1: 20
+
+anchor:                      # Base Sepolia testnet: free, needs faucet ETH only
+  enabled: true
+  rpc: https://sepolia.base.org
+  chain_id: 84532
+  key_env: ANCHOR_PRIVATE_KEY
+  explorer: https://sepolia.basescan.org/tx/
+  # Base mainnet instead (costs cents per anchor):
+  #   rpc: https://mainnet.base.org, chain_id: 8453, explorer: https://basescan.org/tx/
+
+# Any OpenAI-compatible endpoint works.
+#   price_in / price_out: USD per 1M tokens, used for the budget cap when the provider
+#     does not report cost itself.
+#   rpm: optional requests-per-minute ceiling. Set it to your tier's limit on free keys.
+#   enabled: false skips a model even if its key is present.
+# Model ids marked <...> must be filled from `python -m rb catalog <word>`.
+models:
+  # ---- free keys ----
+  - name: grok
+    base_url: https://api.x.ai/v1
+    api_key_env: XAI_API_KEY
+    model: "<id from: python -m rb catalog grok>"
+    rpm: 10
+  - name: gemini-free
+    base_url: https://generativelanguage.googleapis.com/v1beta/openai
+    api_key_env: GEMINI_API_KEY
+    model: "gemini-3.5-flash-lite"
+    rpm: 10
+  - name: groq-open
+    base_url: https://api.groq.com/openai/v1
+    api_key_env: GROQ_API_KEY
+    model: "openai/gpt-oss-120b"
+    rpm: 20
+
+  # ---- OpenRouter (paid, one key) ----
+  # Ids and prices read from openrouter.ai/api/v1/models on 14 Nov 2026 (partial list).
+  # Confirm with `python -m rb catalog haiku` etc. before starting.
+  - name: claude-haiku
+    base_url: https://openrouter.ai/api/v1
+    api_key_env: OPENROUTER_API_KEY
+    model: anthropic/claude-haiku-5.5
+    price_in: 0.10
+    price_out: 0.50
+  - name: deepseek
+    base_url: https://openrouter.ai/api/v1
+    api_key_env: OPENROUTER_API_KEY
+    model: deepseek/deepseek-v4.1-flash-1017
+    price_in: 0.038
+    price_out: 0.50
+  - name: muse
+    base_url: https://openrouter.ai/api/v1
+    api_key_env: OPENROUTER_API_KEY
+    model: meta/muse-ember
+    price_in: 0.10
+    price_out: 0.50
+  - name: gpt
+    enabled: false           # about 10x the cost of the three above; turn on only if `models` shows it fits the budget
+    base_url: https://openrouter.ai/api/v1
+    api_key_env: OPENROUTER_API_KEY
+    model: openai/gpt-6.1-terra
+    price_in: 1.00
+    price_out: 5.00
+  - name: gemini
+    enabled: false           # same model family as gemini-free above; use one or the other
+    base_url: https://openrouter.ai/api/v1
+    api_key_env: OPENROUTER_API_KEY
+    model: google/gemini-4-hydrogen
+    price_in: 1.50
+    price_out: 7.50
