@@ -85,6 +85,18 @@ class Runner:
                 out[m] = ps
         return out
 
+    def _recheckable(self, mint):
+        """A candidate is worth evaluating if it is new, or was previously rejected for a
+        reason that can still change (liquidity can grow past the threshold, a pair can
+        appear, an hourly cap frees up). Already-accepted tokens are never re-added, and
+        a token that has aged out of the window cannot come back. This re-evaluates the
+        inclusion filter on every poll rather than only at first sighting; the $10k
+        definition of "accepted" is unchanged. Deviation from PREREG; see DEVIATIONS.md."""
+        r = self.db.one("SELECT decision, reason FROM seen WHERE mint=?", (mint,))
+        if r is None:
+            return True
+        return r["decision"] != "accepted" and r["reason"] != "too_old"
+
     def discover(self):
         now = self.clock()
         if not self.collecting(now):
@@ -96,7 +108,7 @@ class Runner:
                     cands.setdefault(mint, (name, promo))
             except Exception as e:
                 log.warning("source %s failed: %s", name, e)
-        new = [m for m in cands if not self.db.one("SELECT 1 FROM seen WHERE mint=?", (m,))]
+        new = [m for m in cands if self._recheckable(m)]
         self.rng.shuffle(new)
         cap = int(self.cfg["run"].get("max_tokens_per_hour", 60))
         added = 0
@@ -109,7 +121,9 @@ class Runner:
                 ok, reason = False, "hourly_cap"
             if ok and not self.collecting(now):
                 break
-            self.db.x("INSERT OR IGNORE INTO seen VALUES(?,?,?,?,?)",
+            self.db.x("INSERT INTO seen(mint,first_seen,source,decision,reason) VALUES(?,?,?,?,?) "
+                      "ON CONFLICT(mint) DO UPDATE SET source=excluded.source, "
+                      "decision=excluded.decision, reason=excluded.reason",
                       (mint, now, src, "accepted" if ok else "rejected", reason))
             if not ok:
                 continue
