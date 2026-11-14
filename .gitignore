@@ -1,0 +1,9 @@
+.env
+data/
+results/
+.venv/
+__pycache__/
+*.pyc
+
+# internal handoff, not for public repo
+CLAUDE.md
