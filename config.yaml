@@ -62,6 +62,11 @@ models:
     api_key_env: GROQ_API_KEY
     model: "openai/gpt-oss-120b"
     rpm: 20
+  - name: groq-open-2
+    base_url: https://api.groq.com/openai/v1
+    api_key_env: GROQ_API_KEY
+    model: "qwen/qwen3.8-27b"
+    rpm: 20
 
   # ---- OpenRouter (paid, one key) ----
   # Ids and prices read from openrouter.ai/api/v1/models on 14 Nov 2026 (partial list).
