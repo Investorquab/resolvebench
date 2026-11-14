@@ -25,7 +25,7 @@ sources:                     # where candidates come from; each token keeps its 
   - geckoterminal_new_pools  # all brand-new pools (most fail the liquidity filter)
 
 filters:                     # inclusion rule, applied once, the first time a token is seen
-  min_liquidity_usd: 10000
+  min_liquidity_usd: 5000
   min_age_minutes: 5
   max_age_hours: 24
   min_txns_h1: 20
