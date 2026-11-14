@@ -1,0 +1,19 @@
+# sudo cp deploy/resolvebench.service /etc/systemd/system/ && edit the two paths and the user
+# sudo systemctl daemon-reload && sudo systemctl enable --now resolvebench
+# logs: journalctl -u resolvebench -f
+[Unit]
+Description=ResolveBench runner
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=CHANGE_ME
+WorkingDirectory=/home/CHANGE_ME/resolvebench
+ExecStart=/home/CHANGE_ME/resolvebench/.venv/bin/python -m rb run
+Restart=always
+RestartSec=10
+TimeoutStopSec=300
+KillSignal=SIGTERM
+
+[Install]
+WantedBy=multi-user.target
