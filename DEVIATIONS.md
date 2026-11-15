@@ -137,3 +137,44 @@ section was added** (git commit `fe4c557bf9514fc137b9e9e1dc252e854929514a`); the
 (`RESOLVEBENCH\x01` followed by the Merkle root). The original pre-registration remains
 anchored in the prereg batch (tx `0xbf3a0edd…`); this amendment does not replace it — it
 timestamps the documented changes.
+
+---
+
+# Added after outcomes (analysis-stage; NOT part of the pre-outcome anchored record above)
+
+The items below were written after 6-hour outcomes existed. They are disclosed here for
+completeness. None of them changed data collection, the frozen prompts/parser, or any stored
+record; they concern sample size and analysis choices only.
+
+## (f) Sample size: 64 tokens against a pre-registered target of up to 150
+
+- **Pre-registered:** `config.yaml` `run.max_tokens_total: 150`; the plan collected until
+  the earlier of start + 8 h and 2026-11-15T06:00:00Z.
+- **Achieved:** **64** tokens passed the inclusion filter before intake closed at 06:00:00Z.
+- **Cause:** supply, not a collection failure. Newly launched Solana tokens clearing the
+  (lowered) liquidity bar arrived at only a few per hour during the single overnight window;
+  4,755 token-sightings were rejected for low liquidity, 329 for no priced pair, 16 for age.
+  Changes (a) and (b) were made specifically to raise intake toward the 50-per-model minimum,
+  which was met. The 150 target was an upper bound, not reached in one night.
+- **Effect on analysis:** reported throughout as n = 64 (and per-model valid-A counts:
+  gemini 64, gpt-oss 60, qwen 45). The min-n = 50 rule keeps gemini and gpt-oss confirmatory;
+  qwen (45) is exploratory. Underpowering of H4/H6 is also driven by near-zero risk-on advice,
+  a behavioural finding, not only by n.
+
+## (g) Analysis choices made after outcomes
+
+- **Logistic baseline reduced to 5 pre-chosen features.** The pre-registration asked for a
+  "small logistic regression on card features (cross-validated) with Brier and AUC." The
+  headline baseline uses **5 a-priori features** (liquidity, holder concentration, flagged
+  insiders, 6-hour volume, token age), out-of-fold 5-fold CV, with a 2,000-resample bootstrap
+  CI on AUC (`rb/analysis.py: CARD_FEATURES_5`, `logistic_baseline`). An earlier draft used a
+  20-feature fit; at n = 64 with ~20 collapse events that is overfit (EPV ≈ 1) and its higher
+  apparent AUC is not credible, so it is not reported as the baseline. The 5 features were
+  fixed by domain meaning **before** checking which subset maximises AUC.
+- **Human validation of the implication gap was not performed.** The pre-outcome plan
+  mentioned 40 hand-labelled prose answers as a human reference. This was **not done**; no
+  human labels are used. In their place a third AI judge (`claude-fable-5-2`) labelled the 40
+  prose answers blind to numbers/conditions/outcomes, and we report pairwise Spearman agreement
+  **among AI judges only**, stating explicitly that AI-judge agreement is not validity. The
+  implication-gap analysis is exploratory and appendix-only. `human_label_sheet.md` is kept out
+  of the public export to avoid any impression that human labelling occurred.
