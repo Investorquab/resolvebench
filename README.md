@@ -18,6 +18,14 @@ Hundreds of millions of people ask chatbots about money. When someone asks "shou
 
 The third question is the one static benchmarks cannot answer. A model that changes its mind under pressure might be updating sensibly or might be telling the user what they want to hear. With a real outcome for every answer, the two can be told apart.
 
+## Contributions
+
+1. **A leak-proof, outcome-anchored eval.** Conversational financial advice, controlled social-pressure manipulations, and real short-horizon outcomes are combined in one pre-registered experiment, with every response hashed and committed on-chain *before the outcome exists*. The answer key could not have leaked into training data, because it did not exist when the models answered. Each ingredient has precedent (see [Related work](#related-work)); the combination is the contribution.
+2. **A test that separates warranted updating from capitulation.** Because the outcome is known, a change in a model's stated risk under pressure can be scored as more or less accurate — the distinction FlipRate asks for and a static answer key cannot provide.
+3. **A pipeline that keeps working.** The collector, scorer, and on-chain anchoring run unattended and can accumulate a legible, inspectable track record over time, not a one-off benchmark snapshot.
+
+Everything is pre-registered in [`PREREG.md`](PREREG.md); every change made after the run started is documented, timestamped, and (where it touched a frozen file) re-anchored on-chain in [`DEVIATIONS.md`](DEVIATIONS.md).
+
 ## How it works
 
 1. **Sample.** New Solana tokens are picked up from public feeds every 3 minutes and screened once against a fixed inclusion rule. Every screening decision is logged.
@@ -110,9 +118,19 @@ A model whose key is blank is skipped, so the same `config.yaml` works whichever
 | `models` | Sends one real question to each configured model |
 | `run` | The collector: sample, ask, track, commit. Safe to stop and restart |
 | `status` | Token and response counts, spend, commitments |
-| `report` | Labels outcomes and writes `results/report.md` and `results/results.json` |
+| `resolve` | Labels elapsed horizons from tracked prices (idempotent; re-run as outcomes land) |
+| `report` | Writes `results/report.md` and `results/results.json` |
 | `verify <id>` | Proves one response was committed before its outcome |
-| `export` | Writes the public data files |
+| `export` | Writes the public data files (condition-P text withheld) |
+
+The inferential analysis and figures are produced by scripts (numpy / matplotlib only):
+
+| Script | What it does |
+|---|---|
+| `scripts/run_analysis.py <db> <out>` | Holm-corrected confirmatory tests, min-n gate, 5-feature logistic baseline with bootstrap CI, by-source stratification, exploratory analyses → `results/analysis.md` |
+| `scripts/make_figures.py <db> <out>` | The five figures → `results/figures/` |
+| `scripts/run_judge.py` | Cross-family implication-gap judges → `data/implied.sqlite` |
+| `scripts/judge_agreement.py` | Pairwise Spearman among AI judges (no human labels) → `results/validation/` |
 
 Settings live in [`config.yaml`](config.yaml): sampling caps, the inclusion filter, the stopping time, the spend limit, the chain, and the model list with an optional requests-per-minute ceiling for each.
 
@@ -121,14 +139,18 @@ Settings live in [`config.yaml`](config.yaml): sampling caps, the inclusion filt
 | Path | Role |
 |---|---|
 | `PREREG.md` | Design, hypotheses and analysis plan, fixed before collection |
+| `DEVIATIONS.md` | Every change after the run started, timestamped and re-anchored |
 | `rb/prompts.py` | Wording of every condition and the response parser |
 | `rb/sources.py` | DexScreener, RugCheck and GeckoTerminal clients; snapshot and facts card |
 | `rb/models.py` | Client for any OpenAI-compatible API |
 | `rb/run.py` | The collector loop |
 | `rb/merkle.py`, `rb/anchor.py` | RFC 6962 tree and the on-chain anchor |
-| `rb/resolve.py`, `rb/report.py` | Outcome labels and the analysis |
+| `rb/resolve.py`, `rb/report.py` | Outcome labels and the descriptive report |
+| `rb/analysis.py`, `rb/figures.py` | Inferential analysis and the figures |
+| `rb/judge.py` | Implication-gap judges (exploratory, appendix) |
+| `scripts/` | Runners for the analysis, figures, judges and judge-agreement |
 | `tests/test_offline.py` | Fake market, fake models, simulated clock |
-| `results/` | Report, figures and the public data export |
+| `results/` | Report, figures, validation, and the public data export |
 
 ## Related work
 
