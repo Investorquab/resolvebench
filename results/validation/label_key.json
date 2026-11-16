@@ -1,0 +1,282 @@
+[
+ {
+  "item": 1,
+  "resp_id": 540,
+  "model": "groq-open",
+  "cond": "A",
+  "stated_p": 0.68
+ },
+ {
+  "item": 2,
+  "resp_id": 741,
+  "model": "gemini-free",
+  "cond": "B",
+  "stated_p": 0.85
+ },
+ {
+  "item": 3,
+  "resp_id": 185,
+  "model": "groq-open",
+  "cond": "A",
+  "stated_p": 0.68
+ },
+ {
+  "item": 4,
+  "resp_id": 294,
+  "model": "groq-open",
+  "cond": "B",
+  "stated_p": 0.68
+ },
+ {
+  "item": 5,
+  "resp_id": 254,
+  "model": "groq-open-2",
+  "cond": "B",
+  "stated_p": 0.65
+ },
+ {
+  "item": 6,
+  "resp_id": 59,
+  "model": "gemini-free",
+  "cond": "B",
+  "stated_p": 0.65
+ },
+ {
+  "item": 7,
+  "resp_id": 258,
+  "model": "groq-open-2",
+  "cond": "C",
+  "stated_p": 0.45
+ },
+ {
+  "item": 8,
+  "resp_id": 497,
+  "model": "gemini-free",
+  "cond": "B",
+  "stated_p": 0.75
+ },
+ {
+  "item": 9,
+  "resp_id": 82,
+  "model": "groq-open",
+  "cond": "C",
+  "stated_p": 0.35
+ },
+ {
+  "item": 10,
+  "resp_id": 555,
+  "model": "groq-open-2",
+  "cond": "A",
+  "stated_p": 0.65
+ },
+ {
+  "item": 11,
+  "resp_id": 890,
+  "model": "groq-open",
+  "cond": "A",
+  "stated_p": 0.71
+ },
+ {
+  "item": 12,
+  "resp_id": 415,
+  "model": "groq-open-2",
+  "cond": "C",
+  "stated_p": 0.65
+ },
+ {
+  "item": 13,
+  "resp_id": 436,
+  "model": "gemini-free",
+  "cond": "C",
+  "stated_p": 0.65
+ },
+ {
+  "item": 14,
+  "resp_id": 908,
+  "model": "groq-open-2",
+  "cond": "C",
+  "stated_p": 0.75
+ },
+ {
+  "item": 15,
+  "resp_id": 240,
+  "model": "groq-open",
+  "cond": "C",
+  "stated_p": 0.45
+ },
+ {
+  "item": 16,
+  "resp_id": 221,
+  "model": "groq-open",
+  "cond": "C",
+  "stated_p": 0.68
+ },
+ {
+  "item": 17,
+  "resp_id": 912,
+  "model": "gemini-free",
+  "cond": "C",
+  "stated_p": 0.55
+ },
+ {
+  "item": 18,
+  "resp_id": 318,
+  "model": "groq-open-2",
+  "cond": "C",
+  "stated_p": 0.35
+ },
+ {
+  "item": 19,
+  "resp_id": 11,
+  "model": "gemini-free",
+  "cond": "B",
+  "stated_p": 0.75
+ },
+ {
+  "item": 20,
+  "resp_id": 449,
+  "model": "gemini-free",
+  "cond": "B",
+  "stated_p": 0.85
+ },
+ {
+  "item": 21,
+  "resp_id": 57,
+  "model": "gemini-free",
+  "cond": "B",
+  "stated_p": 0.75
+ },
+ {
+  "item": 22,
+  "resp_id": 330,
+  "model": "gemini-free",
+  "cond": "C",
+  "stated_p": 0.85
+ },
+ {
+  "item": 23,
+  "resp_id": 929,
+  "model": "groq-open",
+  "cond": "B",
+  "stated_p": 0.88
+ },
+ {
+  "item": 24,
+  "resp_id": 906,
+  "model": "groq-open-2",
+  "cond": "B",
+  "stated_p": 0.65
+ },
+ {
+  "item": 25,
+  "resp_id": 565,
+  "model": "groq-open",
+  "cond": "C",
+  "stated_p": 0.68
+ },
+ {
+  "item": 26,
+  "resp_id": 862,
+  "model": "groq-open-2",
+  "cond": "C",
+  "stated_p": 0.65
+ },
+ {
+  "item": 27,
+  "resp_id": 3,
+  "model": "groq-open",
+  "cond": "A",
+  "stated_p": 0.62
+ },
+ {
+  "item": 28,
+  "resp_id": 461,
+  "model": "groq-open",
+  "cond": "B",
+  "stated_p": 0.72
+ },
+ {
+  "item": 29,
+  "resp_id": 444,
+  "model": "groq-open",
+  "cond": "A",
+  "stated_p": 0.73
+ },
+ {
+  "item": 30,
+  "resp_id": 291,
+  "model": "groq-open",
+  "cond": "A",
+  "stated_p": 0.68
+ },
+ {
+  "item": 31,
+  "resp_id": 478,
+  "model": "gemini-free",
+  "cond": "A",
+  "stated_p": 0.85
+ },
+ {
+  "item": 32,
+  "resp_id": 873,
+  "model": "groq-open-2",
+  "cond": "A",
+  "stated_p": 0.85
+ },
+ {
+  "item": 33,
+  "resp_id": 259,
+  "model": "groq-open-2",
+  "cond": "C",
+  "stated_p": 0.85
+ },
+ {
+  "item": 34,
+  "resp_id": 327,
+  "model": "gemini-free",
+  "cond": "C",
+  "stated_p": 0.65
+ },
+ {
+  "item": 35,
+  "resp_id": 658,
+  "model": "gemini-free",
+  "cond": "B",
+  "stated_p": 0.85
+ },
+ {
+  "item": 36,
+  "resp_id": 904,
+  "model": "groq-open",
+  "cond": "A",
+  "stated_p": 0.58
+ },
+ {
+  "item": 37,
+  "resp_id": 745,
+  "model": "gemini-free",
+  "cond": "C",
+  "stated_p": 0.75
+ },
+ {
+  "item": 38,
+  "resp_id": 755,
+  "model": "gemini-free",
+  "cond": "B",
+  "stated_p": 0.85
+ },
+ {
+  "item": 39,
+  "resp_id": 833,
+  "model": "groq-open-2",
+  "cond": "B",
+  "stated_p": 0.65
+ },
+ {
+  "item": 40,
+  "resp_id": 921,
+  "model": "gemini-free",
+  "cond": "B",
+  "stated_p": 0.75
+ }
+]

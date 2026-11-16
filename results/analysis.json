@@ -1,0 +1,830 @@
+{
+  "confirmatory": {
+    "min_n": 50,
+    "n_validA_6h": {
+      "groq-open": 60,
+      "gemini-free": 64,
+      "groq-open-2": 45
+    },
+    "confirmatory_models": [
+      "gemini-free",
+      "groq-open"
+    ],
+    "contrasts": {
+      "H1_brier_skill_A": {
+        "describe": "mean>0 and p<.05 => A is better calibrated than guessing the base rate (rejects H1's null of no skill)",
+        "effect": {
+          "groq-open": {
+            "mean": -0.16061944444444448,
+            "lo": -0.2525625138888889,
+            "hi": -0.06183359722222225,
+            "n": 60
+          },
+          "gemini-free": {
+            "mean": -0.17765625000000002,
+            "lo": -0.27671874999999996,
+            "hi": -0.07327929687500002,
+            "n": 64
+          },
+          "groq-open-2": {
+            "mean": -0.10733333333333334,
+            "lo": -0.19755694444444447,
+            "hi": -0.01938888888888887,
+            "n": 45
+          }
+        },
+        "p_raw": {
+          "groq-open": 0.00245,
+          "gemini-free": 0.00075,
+          "groq-open-2": 0.02235
+        },
+        "holm": {
+          "gemini-free": {
+            "p": 0.00075,
+            "p_holm": 0.0015,
+            "reject": true
+          },
+          "groq-open": {
+            "p": 0.00245,
+            "p_holm": 0.00245,
+            "reject": true
+          }
+        },
+        "models_tested": [
+          "gemini-free",
+          "groq-open"
+        ]
+      },
+      "H2_hype_dP": {
+        "describe": "mean<0 => B lowers stated P(collapse 6h) vs A",
+        "effect": {
+          "groq-open": {
+            "mean": 0.01134615384615384,
+            "lo": -0.01692788461538462,
+            "hi": 0.039230769230769215,
+            "n": 52
+          },
+          "gemini-free": {
+            "mean": 0.05890624999999998,
+            "lo": 0.039062499999999986,
+            "hi": 0.07921874999999999,
+            "n": 64
+          },
+          "groq-open-2": {
+            "mean": 0.05333333333333332,
+            "lo": -0.025555555555555543,
+            "hi": 0.13111111111111107,
+            "n": 45
+          }
+        },
+        "p_raw": {
+          "groq-open": 0.44665,
+          "gemini-free": 0.0,
+          "groq-open-2": 0.19605
+        },
+        "holm": {
+          "gemini-free": {
+            "p": 0.0,
+            "p_holm": 0.0,
+            "reject": true
+          },
+          "groq-open": {
+            "p": 0.44665,
+            "p_holm": 0.44665,
+            "reject": false
+          }
+        },
+        "models_tested": [
+          "gemini-free",
+          "groq-open"
+        ]
+      },
+      "H2_hype_dRiskOn": {
+        "describe": "mean>0 => B raises the risk-on rate vs A",
+        "effect": {
+          "groq-open": {
+            "mean": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n": 52
+          },
+          "gemini-free": {
+            "mean": -0.015625,
+            "lo": -0.046875,
+            "hi": 0.0,
+            "n": 64
+          },
+          "groq-open-2": {
+            "mean": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n": 45
+          }
+        },
+        "p_raw": {
+          "groq-open": 1.0,
+          "gemini-free": 1.0,
+          "groq-open-2": 1.0
+        },
+        "holm": {
+          "groq-open": {
+            "p": 1.0,
+            "p_holm": 1.0,
+            "reject": false
+          },
+          "gemini-free": {
+            "p": 1.0,
+            "p_holm": 1.0,
+            "reject": false
+          }
+        },
+        "models_tested": [
+          "gemini-free",
+          "groq-open"
+        ]
+      },
+      "H3_sunkcost_dP": {
+        "describe": "mean<0 => C lowers stated P(collapse 6h) vs A",
+        "effect": {
+          "groq-open": {
+            "mean": -0.10530612244897959,
+            "lo": -0.14163265306122447,
+            "hi": -0.0693877551020408,
+            "n": 49
+          },
+          "gemini-free": {
+            "mean": -0.04531249999999999,
+            "lo": -0.06718749999999998,
+            "hi": -0.024218749999999997,
+            "n": 64
+          },
+          "groq-open-2": {
+            "mean": -0.0788888888888889,
+            "lo": -0.15333333333333332,
+            "hi": -0.0011111111111111133,
+            "n": 45
+          }
+        },
+        "p_raw": {
+          "groq-open": 0.0,
+          "gemini-free": 0.0003,
+          "groq-open-2": 0.06055
+        },
+        "holm": {
+          "groq-open": {
+            "p": 0.0,
+            "p_holm": 0.0,
+            "reject": true
+          },
+          "gemini-free": {
+            "p": 0.0003,
+            "p_holm": 0.0003,
+            "reject": true
+          }
+        },
+        "models_tested": [
+          "gemini-free",
+          "groq-open"
+        ]
+      },
+      "H3_sunkcost_dRiskOn": {
+        "describe": "mean>0 => C raises the risk-on rate vs A",
+        "effect": {
+          "groq-open": {
+            "mean": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n": 49
+          },
+          "gemini-free": {
+            "mean": 0.015625,
+            "lo": -0.03125,
+            "hi": 0.0625,
+            "n": 64
+          },
+          "groq-open-2": {
+            "mean": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n": 45
+          }
+        },
+        "p_raw": {
+          "groq-open": 1.0,
+          "gemini-free": 1.0,
+          "groq-open-2": 1.0
+        },
+        "holm": {
+          "groq-open": {
+            "p": 1.0,
+            "p_holm": 1.0,
+            "reject": false
+          },
+          "gemini-free": {
+            "p": 1.0,
+            "p_holm": 1.0,
+            "reject": false
+          }
+        },
+        "models_tested": [
+          "gemini-free",
+          "groq-open"
+        ]
+      },
+      "H4_flip_excess_after_risk_on": {
+        "describe": "mean>0 => pressure (D) flips the advice more than a neutral re-check (D0)",
+        "effect": {
+          "groq-open": null,
+          "gemini-free": {
+            "mean": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n": 1
+          },
+          "groq-open-2": null
+        },
+        "p_raw": {
+          "groq-open": null,
+          "gemini-free": 1.0,
+          "groq-open-2": null
+        },
+        "holm": {
+          "gemini-free": {
+            "p": 1.0,
+            "p_holm": 1.0,
+            "reject": false
+          },
+          "groq-open": {
+            "p": null,
+            "p_holm": null,
+            "reject": false
+          }
+        },
+        "models_tested": [
+          "gemini-free",
+          "groq-open"
+        ]
+      },
+      "H4_flip_excess_after_risk_off": {
+        "describe": "mean>0 => pressure (D) flips the advice more than a neutral re-check (D0)",
+        "effect": {
+          "groq-open": {
+            "mean": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n": 45
+          },
+          "gemini-free": {
+            "mean": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n": 63
+          },
+          "groq-open-2": {
+            "mean": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n": 45
+          }
+        },
+        "p_raw": {
+          "groq-open": 1.0,
+          "gemini-free": 1.0,
+          "groq-open-2": 1.0
+        },
+        "holm": {
+          "groq-open": {
+            "p": 1.0,
+            "p_holm": 1.0,
+            "reject": false
+          },
+          "gemini-free": {
+            "p": 1.0,
+            "p_holm": 1.0,
+            "reject": false
+          }
+        },
+        "models_tested": [
+          "gemini-free",
+          "groq-open"
+        ]
+      },
+      "H5_brier_worse_B": {
+        "describe": "mean>0 => when B moves the probability, it moves away from the truth",
+        "effect": {
+          "groq-open": {
+            "mean": 0.025123913043478246,
+            "lo": -0.013536032608695658,
+            "hi": 0.062191739130434756,
+            "n": 46
+          },
+          "gemini-free": {
+            "mean": 0.11029117647058818,
+            "lo": 0.0641176470588235,
+            "hi": 0.15647058823529406,
+            "n": 34
+          },
+          "groq-open-2": {
+            "mean": 0.003030303030303048,
+            "lo": -0.11393939393939394,
+            "hi": 0.11810795454545454,
+            "n": 33
+          }
+        },
+        "p_raw": {
+          "groq-open": 0.2239,
+          "gemini-free": 0.00025,
+          "groq-open-2": 0.9651
+        },
+        "holm": {
+          "gemini-free": {
+            "p": 0.00025,
+            "p_holm": 0.0005,
+            "reject": true
+          },
+          "groq-open": {
+            "p": 0.2239,
+            "p_holm": 0.2239,
+            "reject": false
+          }
+        },
+        "models_tested": [
+          "gemini-free",
+          "groq-open"
+        ]
+      },
+      "H5_brier_worse_C": {
+        "describe": "mean>0 => when C moves the probability, it moves away from the truth",
+        "effect": {
+          "groq-open": {
+            "mean": -0.08269767441860464,
+            "lo": -0.1349404069767442,
+            "hi": -0.0297448255813954,
+            "n": 43
+          },
+          "gemini-free": {
+            "mean": -0.0432051282051282,
+            "lo": -0.08647435897435893,
+            "hi": -0.0015384615384615413,
+            "n": 39
+          },
+          "groq-open-2": {
+            "mean": -0.04174242424242424,
+            "lo": -0.1624488636363636,
+            "hi": 0.08432007575757575,
+            "n": 33
+          }
+        },
+        "p_raw": {
+          "groq-open": 0.00335,
+          "gemini-free": 0.055,
+          "groq-open-2": 0.512
+        },
+        "holm": {
+          "groq-open": {
+            "p": 0.00335,
+            "p_holm": 0.0067,
+            "reject": true
+          },
+          "gemini-free": {
+            "p": 0.055,
+            "p_holm": 0.055,
+            "reject": false
+          }
+        },
+        "models_tested": [
+          "gemini-free",
+          "groq-open"
+        ]
+      },
+      "H5_brier_worse_D": {
+        "describe": "mean>0 => when D moves the probability, it moves away from the truth",
+        "effect": {
+          "groq-open": {
+            "mean": 0.0040125000000000004,
+            "lo": -0.00409604166666665,
+            "hi": 0.011902604166666648,
+            "n": 48
+          },
+          "gemini-free": {
+            "mean": -0.04194444444444448,
+            "lo": -0.05972222222222227,
+            "hi": -0.020833333333333353,
+            "n": 18
+          },
+          "groq-open-2": null
+        },
+        "p_raw": {
+          "groq-open": 0.3364,
+          "gemini-free": 0.0022125244140625,
+          "groq-open-2": null
+        },
+        "holm": {
+          "gemini-free": {
+            "p": 0.0022125244140625,
+            "p_holm": 0.004425048828125,
+            "reject": true
+          },
+          "groq-open": {
+            "p": 0.3364,
+            "p_holm": 0.3364,
+            "reject": false
+          }
+        },
+        "models_tested": [
+          "gemini-free",
+          "groq-open"
+        ]
+      },
+      "H6_regret_B": {
+        "describe": "mean>0 => among tokens that collapsed, B tells more users to buy/hold than A",
+        "effect": {
+          "groq-open": {
+            "mean": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n": 16
+          },
+          "gemini-free": {
+            "mean": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n": 20
+          },
+          "groq-open-2": {
+            "mean": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n": 18
+          }
+        },
+        "p_raw": {
+          "groq-open": 1.0,
+          "gemini-free": 1.0,
+          "groq-open-2": 1.0
+        },
+        "holm": {
+          "groq-open": {
+            "p": 1.0,
+            "p_holm": 1.0,
+            "reject": false
+          },
+          "gemini-free": {
+            "p": 1.0,
+            "p_holm": 1.0,
+            "reject": false
+          }
+        },
+        "models_tested": [
+          "gemini-free",
+          "groq-open"
+        ]
+      },
+      "H6_regret_C": {
+        "describe": "mean>0 => among tokens that collapsed, C tells more users to buy/hold than A",
+        "effect": {
+          "groq-open": {
+            "mean": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n": 15
+          },
+          "gemini-free": {
+            "mean": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n": 20
+          },
+          "groq-open-2": {
+            "mean": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n": 18
+          }
+        },
+        "p_raw": {
+          "groq-open": 1.0,
+          "gemini-free": 1.0,
+          "groq-open-2": 1.0
+        },
+        "holm": {
+          "groq-open": {
+            "p": 1.0,
+            "p_holm": 1.0,
+            "reject": false
+          },
+          "gemini-free": {
+            "p": 1.0,
+            "p_holm": 1.0,
+            "reject": false
+          }
+        },
+        "models_tested": [
+          "gemini-free",
+          "groq-open"
+        ]
+      },
+      "H6_regret_D": {
+        "describe": "mean>0 => among tokens that collapsed, D tells more users to buy/hold than A",
+        "effect": {
+          "groq-open": {
+            "mean": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n": 14
+          },
+          "gemini-free": {
+            "mean": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n": 20
+          },
+          "groq-open-2": {
+            "mean": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n": 18
+          }
+        },
+        "p_raw": {
+          "groq-open": 1.0,
+          "gemini-free": 1.0,
+          "groq-open-2": 1.0
+        },
+        "holm": {
+          "groq-open": {
+            "p": 1.0,
+            "p_holm": 1.0,
+            "reject": false
+          },
+          "gemini-free": {
+            "p": 1.0,
+            "p_holm": 1.0,
+            "reject": false
+          }
+        },
+        "models_tested": [
+          "gemini-free",
+          "groq-open"
+        ]
+      }
+    }
+  },
+  "logistic_baseline_6h": {
+    "n": 64,
+    "n_features": 5,
+    "features": [
+      "liquidity_usd",
+      "top10_pct",
+      "insider_wallets",
+      "volume_h6",
+      "age_minutes"
+    ],
+    "base_rate": 0.3125,
+    "brier": 0.21753136003820783,
+    "brier_base_rate": 0.21484375,
+    "skill": -0.012509603086930943,
+    "auc": 0.6488636363636363,
+    "auc_ci": [
+      0.5153658008124209,
+      0.7812865497076024
+    ],
+    "ece": 0.18395619498504726,
+    "cv": "5-fold, L2=1.0, out-of-fold; AUC 95% bootstrap over tokens (2000 resamples)"
+  },
+  "by_source": {
+    "dexscreener_boosts": {
+      "tokens": 7,
+      "n_6h": 7,
+      "collapse_6h": 0.0,
+      "A_mean_p": 0.6605882352941176,
+      "A_brier": 0.4609705882352942,
+      "A_auc": null,
+      "A_n": 17
+    },
+    "dexscreener_profiles": {
+      "tokens": 53,
+      "n_6h": 53,
+      "collapse_6h": 0.33962264150943394,
+      "A_mean_p": 0.6954285714285715,
+      "A_brier": 0.37003714285714284,
+      "A_auc": 0.4832562238378498,
+      "A_n": 140
+    },
+    "geckoterminal_new_pools": {
+      "tokens": 4,
+      "n_6h": 4,
+      "collapse_6h": 0.5,
+      "A_mean_p": 0.7866666666666666,
+      "A_brier": 0.3107333333333333,
+      "A_auc": 0.6388888888888888,
+      "A_n": 12
+    }
+  },
+  "exploratory": {
+    "contradiction": {
+      "groq-open": {
+        "A": {
+          "n_risk_on": 0,
+          "p_collapse>=.5_among_riskon": null,
+          "p_halve>=.5_among_riskon": null
+        },
+        "B": {
+          "n_risk_on": 0,
+          "p_collapse>=.5_among_riskon": null,
+          "p_halve>=.5_among_riskon": null
+        },
+        "C": {
+          "n_risk_on": 0,
+          "p_collapse>=.5_among_riskon": null,
+          "p_halve>=.5_among_riskon": null
+        },
+        "D": {
+          "n_risk_on": 0,
+          "p_collapse>=.5_among_riskon": null,
+          "p_halve>=.5_among_riskon": null
+        },
+        "D0": {
+          "n_risk_on": 0,
+          "p_collapse>=.5_among_riskon": null,
+          "p_halve>=.5_among_riskon": null
+        }
+      },
+      "gemini-free": {
+        "A": {
+          "n_risk_on": 1,
+          "p_collapse>=.5_among_riskon": 1.0,
+          "p_halve>=.5_among_riskon": 1.0
+        },
+        "B": {
+          "n_risk_on": 0,
+          "p_collapse>=.5_among_riskon": null,
+          "p_halve>=.5_among_riskon": null
+        },
+        "C": {
+          "n_risk_on": 2,
+          "p_collapse>=.5_among_riskon": 0.5,
+          "p_halve>=.5_among_riskon": 1.0
+        },
+        "D": {
+          "n_risk_on": 0,
+          "p_collapse>=.5_among_riskon": null,
+          "p_halve>=.5_among_riskon": null
+        },
+        "D0": {
+          "n_risk_on": 0,
+          "p_collapse>=.5_among_riskon": null,
+          "p_halve>=.5_among_riskon": null
+        }
+      },
+      "groq-open-2": {
+        "A": {
+          "n_risk_on": 0,
+          "p_collapse>=.5_among_riskon": null,
+          "p_halve>=.5_among_riskon": null
+        },
+        "B": {
+          "n_risk_on": 0,
+          "p_collapse>=.5_among_riskon": null,
+          "p_halve>=.5_among_riskon": null
+        },
+        "C": {
+          "n_risk_on": 0,
+          "p_collapse>=.5_among_riskon": null,
+          "p_halve>=.5_among_riskon": null
+        },
+        "D": {
+          "n_risk_on": 0,
+          "p_collapse>=.5_among_riskon": null,
+          "p_halve>=.5_among_riskon": null
+        },
+        "D0": {
+          "n_risk_on": 0,
+          "p_collapse>=.5_among_riskon": null,
+          "p_halve>=.5_among_riskon": null
+        }
+      }
+    },
+    "binary_vs_brier": {
+      "models": {
+        "groq-open": {
+          "n_action": 60,
+          "accuracy_buy_avoid": 0.31666666666666665,
+          "n_prob": 60,
+          "brier": 0.3770083333333334
+        },
+        "gemini-free": {
+          "n_action": 64,
+          "accuracy_buy_avoid": 0.328125,
+          "n_prob": 64,
+          "brier": 0.39249999999999996
+        },
+        "groq-open-2": {
+          "n_action": 45,
+          "accuracy_buy_avoid": 0.4,
+          "n_prob": 45,
+          "brier": 0.3473333333333333
+        }
+      },
+      "always_avoid": {
+        "accuracy": 0.33727810650887574,
+        "brier_if_p1": 0.6627218934911243,
+        "note": "accuracy of 'always avoid' equals the collapse base rate"
+      },
+      "rank_by_accuracy": [
+        "groq-open-2",
+        "gemini-free",
+        "groq-open"
+      ],
+      "rank_by_brier": [
+        "groq-open-2",
+        "groq-open",
+        "gemini-free"
+      ],
+      "rankings_agree": false
+    },
+    "consistency": {
+      "groq-open": {
+        "n": 47,
+        "spearman": 0.05866654030564501,
+        "ci95": [
+          -0.22631410190698137,
+          0.33614079244684686
+        ]
+      },
+      "gemini-free": {
+        "n": 64,
+        "spearman": -0.2644237565706061,
+        "ci95": [
+          -0.49822547467900274,
+          -0.01142910669073606
+        ]
+      },
+      "groq-open-2": {
+        "n": 45,
+        "spearman": 0.17724196090415867,
+        "ci95": [
+          -0.1656951670928454,
+          0.5037599541906876
+        ]
+      }
+    },
+    "implication_gap": {
+      "n_responses_judged": 491,
+      "n_verdicts": 765,
+      "gap_overall": {
+        "mean": -0.16308553971486758,
+        "lo": -0.1780346232179226,
+        "hi": -0.1481563136456212,
+        "n": 491
+      },
+      "gap_by_condition": {
+        "A": {
+          "mean": -0.15263313609467458,
+          "lo": -0.1760673076923077,
+          "hi": -0.13011538461538466,
+          "n": 169
+        },
+        "B": {
+          "mean": -0.138858024691358,
+          "lo": -0.16065123456790123,
+          "hi": -0.11898148148148147,
+          "n": 162
+        },
+        "C": {
+          "mean": -0.19865624999999998,
+          "lo": -0.22903203124999996,
+          "hi": -0.16740546874999998,
+          "n": 160
+        }
+      },
+      "gap_by_author": {
+        "gemini-free": {
+          "mean": -0.06388020833333334,
+          "lo": -0.08271289062500001,
+          "hi": -0.044712890625,
+          "n": 192
+        },
+        "groq-open": {
+          "mean": -0.18628048780487802,
+          "lo": -0.2022263719512195,
+          "hi": -0.17076143292682927,
+          "n": 164
+        },
+        "groq-open-2": {
+          "mean": -0.276,
+          "lo": -0.3070046296296296,
+          "hi": -0.24511111111111114,
+          "n": 135
+        }
+      },
+      "judge_agreement": {
+        "n_pairs": 274,
+        "pearson": 0.4863097220821447,
+        "spearman": 0.4399368394626536,
+        "mean_abs_diff": 0.06653284671532846
+      },
+      "note": "positive gap = prose sounds safer than the stated number (overselling); negative = prose sounds more alarmed. Validation vs 40 human labels pending."
+    }
+  }
+}

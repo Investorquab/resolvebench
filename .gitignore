@@ -9,3 +9,11 @@ __pycache__/
 
 # internal handoff, not for the public repo
 CLAUDE.md
+
+# laptop-only working dirs (analysis venv, submission PDF build, video prompt)
+.venv-analysis/
+submission/
+video/
+
+# abandoned human-label sheet: never left blank in the public repo
+results/validation/human_label_sheet.md
